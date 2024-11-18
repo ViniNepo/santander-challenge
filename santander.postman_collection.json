@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "7e1ab045-f279-4013-9b95-ddc7c9ca4333",
+		"name": "santander",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21995082"
+	},
+	"item": [
+		{
+			"name": "search cep",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

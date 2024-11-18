@@ -1,48 +1,38 @@
 version: '3.9'
 
 services:
-#  wiremock:
-#    container_name: wiremock
-#    image: rodolpheche/wiremock
-#    volumes:
-#      - ./mappings:/home/wiremock/mappings
-#    ports:
-#      - 8080:8080
+  wiremock:
+    container_name: wiremock
+    image: rodolpheche/wiremock
+    volumes:
+      - ./mappings:/home/wiremock/mappings
+    ports:
+      - "8080:8080"
 
-  postgres:
-    image: postgres:14
+  db:
+    image: postgres
     restart: always
-    container_name: postgres-db
     environment:
       POSTGRES_USER: santander
       POSTGRES_PASSWORD: cep
       POSTGRES_DB: cep
-    ports:
-      - 5432:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  adminer:
-    image: adminer
-    restart: always
-    container_name: adminer
+  java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 8090:8090
-
-#  java-app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8081:8081"
-#    depends_on:
-#      - postgres
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/cep
-#      SPRING_DATASOURCE_USERNAME: cep
-#      SPRING_DATASOURCE_PASSWORD: cep
-#      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-#      MOCK_API_BASE_URL: http://wiremock:8080/api/viacep
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cep
+      SPRING_DATASOURCE_USERNAME: santander
+      SPRING_DATASOURCE_PASSWORD: cep
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      MOCK_API_BASE_URL: http://wiremock:8080/api/viacep
 
 volumes:
   postgres_data:

@@ -1,11 +1,24 @@
 package com.example.santanderchallenge.domain.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "logs")
 public class Log {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "cep")
     private String cep;
+
+    @Column(name = "search_date")
     private LocalDateTime searchDate;
+
+    @Column(name = "response_api", columnDefinition = "TEXT")
     private String responseAPI;
 
     public Log() {}
