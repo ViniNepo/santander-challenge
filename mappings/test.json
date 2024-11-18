@@ -1,0 +1,13 @@
+{
+  "request": {
+    "url": "/api/viacep/03304000",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"cep\": \"03304-000\",\"logradouro\": \"Rua São Bernardo\",\"complemento\": \"\",\"unidade\": \"\",\"bairro\": \"Cidade Mãe do Céu\",\"localidade\": \"São Paulo\",\"uf\": \"SP\",\"estado\": \"São Paulo\",\"regiao\": \"Sudeste\",\"ibge\": \"3550308\",\"gia\": \"1004\",\"ddd\": \"11\", \"siafi\": \"7107\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
